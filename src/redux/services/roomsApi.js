@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const roomsApi = createApi({
   reducerPath: "roomsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/room",
-    credentials: "include",
+    baseUrl:
+      "https://room-booking-and-management-system-server.onrender.com/api/room",
   }),
   tagTypes: ["Room"],
   endpoints: (builder) => ({
@@ -22,10 +22,13 @@ export const roomsApi = createApi({
       query: (id) => `/${id}`,
     }),
     deleteRoom: builder.mutation({
-      query: ({ id }) => {
+      query: ({ id, token }) => {
         return {
           url: `/${id}`,
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         };
       },
       invalidatesTags: (result, error, { id }) => {

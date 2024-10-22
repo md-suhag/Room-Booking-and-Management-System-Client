@@ -16,15 +16,17 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import DeleteDialog from "@/components/dashboard/DeleteDialog";
 import { toast } from "@/hooks/use-toast";
+import { useSelector } from "react-redux";
 
 const AllAvailableRooms = () => {
+  const token = useSelector((state) => state.authR.token);
   const { data: rooms, isLoading, error } = useGetRoomsQuery();
   const [deleteRoom] = useDeleteRoomMutation();
 
   // Handle the delete room logic
   const handleDelete = async (id) => {
     try {
-      await deleteRoom({ id });
+      await deleteRoom({ id, token });
     } catch (error) {
       toast({
         variant: "destructive",
@@ -64,7 +66,7 @@ const AllAvailableRooms = () => {
                     width={50}
                     height={50}
                     alt={room.title}
-                    src={`http://localhost:5000/uploads/${room.picture[0]}`}
+                    src={`https://room-booking-and-management-system-server.onrender.com/uploads/${room.picture[0]}`}
                   />
                 </TableCell>
                 <TableCell>{room.title}</TableCell>

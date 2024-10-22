@@ -18,19 +18,20 @@ export function RoomsCard({ room }) {
       <CardHeader className="relative">
         <Image
           className="rounded"
-          src={`http://localhost:5000/uploads/${room.picture[0]}`}
+          src={`https://room-booking-and-management-system-server.onrender.com/uploads/${room.picture[0]}`}
           width={400}
           height={400}
+          alt="room Image"
         />
         <h3 className="absolute z-[5] right-4 bottom-4 bg-[#CE1C43] text-white rounded-lg p-2 ">
           $ {room.rent}
         </h3>
       </CardHeader>
       <CardContent>
-        <CardTitle className="flex justify-between mb-1  gap-1">
+        <CardTitle className="flex justify-between gap-1 mb-1">
           {room.title}
         </CardTitle>
-        <CardDescription> {room.facilities}</CardDescription>
+        <CardDescription> {room.facilities.join(", ")}</CardDescription>
       </CardContent>
       <CardFooter className="flex justify-start">
         <Button>

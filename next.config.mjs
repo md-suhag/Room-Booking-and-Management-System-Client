@@ -8,6 +8,12 @@ const nextConfig = {
         port: "5000",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "room-booking-and-management-system-server.onrender.com",
+        port: "",
+        pathname: "/uploads/**",
+      },
     ],
   },
 };
