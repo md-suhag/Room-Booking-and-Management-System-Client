@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { useLoginMutation } from "@/redux/services/authApi";
 import { setCredentials } from "@/redux/features/auth/authSlice";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const FormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -45,8 +46,11 @@ const Login = () => {
       toast({
         title: result.message,
       });
-
-      router.push("/admin/dashboard");
+      Cookies.set("token", result?.token, {
+        path: "/",
+        secure: true,
+      });
+      router.push("/");
     } catch (error) {
       console.log("Login failed:", error);
       toast({
