@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import Cookies from "js-cookie";
 const initialState = {
-  token: null,
+  token: Cookies.get("token") || null,
 };
 const authSlice = createSlice({
   name: "auth",
@@ -12,6 +12,7 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.token = null;
+      Cookies.remove("token");
     },
   },
 });

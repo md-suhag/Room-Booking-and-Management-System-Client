@@ -44,6 +44,10 @@ const Singup = () => {
     try {
       const result = await signup(data).unwrap();
       dispatch(setCredentials({ token: result.token }));
+      Cookies.set("token", result?.token, {
+        path: "/",
+        secure: true,
+      });
       toast({
         title: result.message,
       });

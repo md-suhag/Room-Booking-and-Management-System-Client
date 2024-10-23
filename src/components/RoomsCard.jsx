@@ -17,7 +17,7 @@ export function RoomsCard({ room }) {
     <Card className="w-full max-w-[350px]">
       <CardHeader className="relative">
         <Image
-          className="rounded"
+          className="object-cover rounded aspect-video"
           src={`https://room-booking-and-management-system-server.onrender.com/uploads/${room.picture[0]}`}
           width={400}
           height={400}

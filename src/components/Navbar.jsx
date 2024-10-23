@@ -25,7 +25,7 @@ const Navbar = () => {
   }
 
   const handleLogout = () => {
-    dispatch(logout);
+    dispatch(logout());
   };
   return (
     <nav className="sticky top-0 z-10 py-4 border-b bg-background/50 backdrop-blur">
