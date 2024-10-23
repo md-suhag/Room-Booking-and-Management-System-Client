@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useSignupMutation } from "@/redux/services/authApi";
 import { setCredentials } from "@/redux/features/auth/authSlice";
+import Cookies from "js-cookie";
 
 // Updated schema with email and password validation
 const FormSchema = z.object({
