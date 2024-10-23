@@ -5,6 +5,7 @@ export const authApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl:
       "https://room-booking-and-management-system-server.onrender.com/api/user",
+    credentials: "include",
   }),
   endpoints: (builder) => ({
     login: builder.mutation({

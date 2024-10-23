@@ -2,6 +2,7 @@
 import React from "react";
 import { RoomsCard } from "./RoomsCard";
 import { useGetRoomsQuery } from "@/redux/services/roomsApi";
+import { CardSkeleton } from "./CardSkeleton";
 
 const AllRooms = () => {
   const { data: rooms, isLoading, error } = useGetRoomsQuery();
@@ -9,6 +10,18 @@ const AllRooms = () => {
   return (
     <section className="min-h-screen py-6 ">
       <h2 className="my-4 text-3xl font-bold text-center">All Rooms</h2>
+      {isLoading && (
+        <div className="grid grid-cols-2 gap-10 lg:grid-cols-4">
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+        </div>
+      )}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {rooms &&
           rooms.data.length > 0 &&

@@ -5,7 +5,7 @@ import AllRooms from "@/components/AllRooms";
 
 export default function Home() {
   return (
-    <main className="container mx-auto px-4">
+    <main className="container px-4 mx-auto">
       <AllRooms />
     </main>
   );
