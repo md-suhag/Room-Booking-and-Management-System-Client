@@ -12,11 +12,21 @@ import {
 } from "@/components/ui/sheet";
 
 import { ModeToggle } from "./theme-btn";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import jwt from "jsonwebtoken";
+import { logout } from "@/redux/features/auth/authSlice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.authR.token);
+  let decoded = null;
+  if (token) {
+    decoded = jwt.decode(token);
+  }
 
+  const handleLogout = () => {
+    dispatch(logout);
+  };
   return (
     <nav className="sticky top-0 z-10 py-4 border-b bg-background/50 backdrop-blur">
       <div className="container flex items-center justify-between px-4 mx-auto">
@@ -47,6 +57,24 @@ const Navbar = () => {
             {!token && (
               <Button className="mx-1" variant="outline">
                 <Link href="/signup">Signup</Link>
+              </Button>
+            )}
+            {token && (
+              <Button className="mx-1" variant="outline">
+                <Link
+                  href={`${
+                    decoded.role === "admin"
+                      ? "/admin/dashboard"
+                      : "/user/dashboard"
+                  }`}
+                >
+                  Dashboard
+                </Link>
+              </Button>
+            )}
+            {token && (
+              <Button onClick={handleLogout} className="mx-1">
+                Logout
               </Button>
             )}
 
